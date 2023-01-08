@@ -30,12 +30,12 @@ header{
     /* bottom: 3rem; */
 }
 
-.header__socials::after{
+/* .header__socials::after{
     content: "";
     width: 1px;
     height: 2rem;
     background-color: var(--color-primary);
-}
+} */
 
 /*..............img...........*/
 .me{

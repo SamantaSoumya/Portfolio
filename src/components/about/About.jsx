@@ -1,6 +1,6 @@
 import React from 'react'
 import "./about.css"
-import ME from '../../assets/img2.jpg'
+import ME from '../../assets/img2.png'
 import { BiAward } from 'react-icons/bi'
 import { AiOutlineUsergroupDelete } from 'react-icons/ai'
 import { VscFolderLibrary } from 'react-icons/vsc'
@@ -21,12 +21,12 @@ const About = () => {
             <article className='about__card'>
               <BiAward className='about__icon' />
               <h5>Experience</h5>
-              <small>3+ Years Working</small>
+              <small>3+ Years Self-Working</small>
             </article>
             <article className='about__card'>
               <AiOutlineUsergroupDelete className='about__icon' />
               <h5>Clients</h5>
-              <small>100+ Worldwide</small>
+              <small>soon</small>
             </article>
             <article className='about__card'>
               <VscFolderLibrary className='about__icon' />

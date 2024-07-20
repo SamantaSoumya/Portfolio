@@ -50,6 +50,9 @@ input,textarea{
     resize: none;
     color: var(--color-white);
 }
+#send_message{
+    margin-left:28%;
+}
 
 
 /*.....................medinum device.....................*/

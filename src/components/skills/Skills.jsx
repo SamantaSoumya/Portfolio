@@ -4,7 +4,8 @@ import {
   FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs,
   FaGitAlt, FaJava, FaAws
 } from 'react-icons/fa'
-import { SiTypescript, SiRedux, SiSpringboot, SiApachekafka } from 'react-icons/si'
+import { SiTypescript, SiSpringboot, SiApachekafka } from 'react-icons/si'
+import { MdOutlineAccountTree } from 'react-icons/md'
 
 const skills = [
   { name: 'Java', icon: <FaJava />, level: 90, color: '#f89820' },
@@ -14,7 +15,7 @@ const skills = [
   { name: 'Kafka', icon: <SiApachekafka />, level: 75, color: '#231f20' },
   { name: 'AWS', icon: <FaAws />, level: 78, color: '#ff9900' },
   { name: 'Git', icon: <FaGitAlt />, level: 85, color: '#f05032' },
-  { name: 'System Design', icon: <SiRedux />, level: 80, color: '#764abc' },
+  { name: 'System Design', icon: <MdOutlineAccountTree />, level: 80, color: '#764abc' },
   { name: 'HTML5', icon: <FaHtml5 />, level: 95, color: '#e34f26' },
   { name: 'CSS3', icon: <FaCss3Alt />, level: 90, color: '#264de4' },
   { name: 'TypeScript', icon: <SiTypescript />, level: 75, color: '#3178c6' },

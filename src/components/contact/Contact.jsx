@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import "./contact.css"
 import { AiOutlineMail } from 'react-icons/ai'
 import { BsWhatsapp, BsLinkedin } from 'react-icons/bs'
@@ -6,11 +6,19 @@ import emailjs from 'emailjs-com'
 
 const Contact = () => {
   const form = useRef();
+  const [status, setStatus] = useState(null); // null | 'sending' | 'success' | 'error'
 
   const sendEmail = (e) => {
     e.preventDefault();
+    setStatus('sending');
     emailjs.sendForm('service_45vrpwd', 'template_5r5t0mm', form.current, 'nX819Ec3BxZDfzhWq')
-    e.target.reset()
+      .then(() => {
+        setStatus('success');
+        e.target.reset();
+      })
+      .catch(() => {
+        setStatus('error');
+      });
   };
 
   return (
@@ -22,7 +30,7 @@ const Contact = () => {
           <article className='contact__option glass'>
             <AiOutlineMail className='contact__option-icon' />
             <h4>Email</h4>
-            <h5>soumya@gmail.com</h5>
+            <h5>soumyasamanta354@gmail.com</h5>
             <a href='mailto:soumyasamanta354@gmail.com' target='_blank' rel='noreferrer'>Send a message</a>
           </article>
           <article className='contact__option glass'>
@@ -49,7 +57,11 @@ const Contact = () => {
           <div className='form-group'>
             <textarea name='message' rows='7' placeholder='Your Message' required />
           </div>
-          <button type='submit' className='btn btn-primary contact__btn'>Send Message</button>
+          {status === 'success' && <p style={{ color: '#6db33f', marginBottom: '1rem' }}>✅ Message sent successfully!</p>}
+          {status === 'error' && <p style={{ color: '#e34f26', marginBottom: '1rem' }}>❌ Failed to send. Please try again.</p>}
+          <button type='submit' className='btn btn-primary contact__btn' disabled={status === 'sending'}>
+            {status === 'sending' ? 'Sending...' : 'Send Message'}
+          </button>
         </form>
       </div>
     </section>
@@ -57,3 +69,4 @@ const Contact = () => {
 }
 
 export default Contact
+

@@ -1,34 +1,69 @@
-nav{
-    background: rgba(0, 0, 0, 0.3);
-    width: max-content;
-    display: block;
-    padding: 0.7rem 1.7rem;
-    z-index: 2;
-    position: fixed;
-    left: 50%;
-    transform: translate(-50%);
-    bottom: 2rem;
-    display: flex;
-    gap: 0.8rem;
-    border-radius: 3rem;
-    backdrop-filter: blur(15px);
+.glass-nav {
+  background: rgba(6, 6, 15, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--color-glass-border);
+  width: max-content;
+  display: flex;
+  padding: 0.7rem 1.2rem;
+  z-index: 10;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 2rem;
+  gap: 0.5rem;
+  border-radius: 50px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-nav a{
-    background: transparent;
-    padding: 0.8rem;
-    border-radius: 50%;
-    display: flex;
-    color: var(--color-light);
-    font-size: 1.1rem;
+.glass-nav a {
+  background: transparent;
+  padding: 0.7rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-light);
+  font-size: 1.1rem;
+  transition: var(--transition);
+  position: relative;
 }
 
-nav a:hover{
-    background: rgba(0, 0, 0, 0.3);
+.glass-nav a:hover {
+  color: var(--color-primary);
+  background: rgba(0, 240, 255, 0.08);
 }
 
-nav a.active{
-    background: var(--color-primary);
-    color: var(--color-white);
+.glass-nav a.active {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: var(--color-white);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+  transform: scale(1.1);
 }
 
+.glass-nav a.active:hover {
+  transform: scale(1.15);
+}
+
+/* .....................medium device..................... */
+
+@media screen and (max-width: 1024px) {
+  .glass-nav {
+    padding: 0.6rem 1rem;
+    gap: 0.3rem;
+  }
+}
+
+/* .....................small device..................... */
+
+@media screen and (max-width: 600px) {
+  .glass-nav {
+    bottom: 1rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .glass-nav a {
+    padding: 0.6rem;
+    font-size: 1rem;
+  }
+}

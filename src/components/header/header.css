@@ -1,71 +1,467 @@
-
-header{
-    height: 100vh;
-    padding-top: 7rem;
-    overflow: hidden;
+header {
+  height: 100vh;
+  padding-top: 5rem;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-.header__container{
+/* .........................Floating Particles.................... */
+
+.floating-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  background: var(--color-primary);
+  border-radius: 50%;
+  left: var(--x);
+  top: var(--y);
+  opacity: 0;
+  animation: particleFloat var(--duration) var(--delay) ease-in-out infinite;
+}
+
+.particle:nth-child(even) {
+  background: var(--color-secondary);
+}
+
+.particle:nth-child(3n) {
+  background: var(--color-accent);
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    opacity: 0;
+    transform: translateY(0) translateX(0) scale(0);
+  }
+  10% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: translateY(-100px) translateX(30px) scale(0.6);
+  }
+  90% {
+    opacity: 0;
+    transform: translateY(-200px) translateX(-20px) scale(0);
+  }
+}
+
+/* .........................Header Container.................... */
+
+.header__container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  height: 100%;
+  padding: 2rem 0 5rem;
+}
+
+.header__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  z-index: 2;
+}
+
+/* .........................Badge.................... */
+
+.header__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  width: max-content;
+  font-size: 0.8rem;
+  color: var(--color-light);
+  font-weight: 500;
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  background: #00ff88;
+  border-radius: 50%;
+  animation: dotPulse 2s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* .........................Text.................... */
+
+.header__greeting {
+  font-size: 1.1rem;
+  color: var(--color-light);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.header__name {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.name-line {
+  display: block;
+  font-size: 4.5rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.header__title {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+.typing-wrapper {
+  display: inline-flex;
+  align-items: center;
+}
+
+.typing-text {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.3em;
+  background: var(--color-primary);
+  margin-left: 4px;
+  animation: blink 1s step-end infinite;
+  box-shadow: 0 0 8px var(--color-primary);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.header__description {
+  max-width: 480px;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+/* .........................CTA.................... */
+
+.cta {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* .........................Socials.................... */
+
+.header__socials {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.header__socials a {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-glass);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--color-glass-border);
+  color: var(--color-light);
+  font-size: 1.1rem;
+  transition: var(--transition);
+}
+
+.header__socials a:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-3px);
+  background: rgba(0, 240, 255, 0.1);
+}
+
+/* .........................Visual / Image.................... */
+
+.header__visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  perspective: 1000px;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.header__image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+  border: 2px solid var(--color-glass-border);
+}
+
+.image-glow {
+  position: absolute;
+  inset: -20px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    var(--color-primary),
+    var(--color-secondary),
+    var(--color-accent),
+    var(--color-primary)
+  );
+  filter: blur(30px);
+  opacity: 0.3;
+  z-index: 0;
+  animation: glowRotate 8s linear infinite;
+}
+
+@keyframes glowRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.image-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid;
+  z-index: 1;
+}
+
+.image-ring--1 {
+  inset: -30px;
+  border-color: rgba(0, 240, 255, 0.15);
+  animation: ringPulse 4s ease-in-out infinite;
+}
+
+.image-ring--2 {
+  inset: -50px;
+  border-color: rgba(180, 0, 255, 0.1);
+  animation: ringPulse 4s ease-in-out infinite 1s;
+}
+
+.image-ring--3 {
+  inset: -70px;
+  border-color: rgba(255, 0, 170, 0.08);
+  animation: ringPulse 4s ease-in-out infinite 2s;
+}
+
+@keyframes ringPulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.03); }
+}
+
+/* .........................Geometric Shapes.................... */
+
+.geometric-shape {
+  position: absolute;
+  z-index: 1;
+}
+
+.geometric-shape--1 {
+  width: 60px;
+  height: 60px;
+  border: 2px solid var(--color-primary);
+  top: 15%;
+  right: 10%;
+  animation: geoFloat 6s ease-in-out infinite;
+  opacity: 0.4;
+}
+
+.geometric-shape--2 {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--color-secondary), transparent);
+  bottom: 25%;
+  right: 5%;
+  border-radius: 8px;
+  animation: geoFloat 8s ease-in-out infinite reverse;
+  opacity: 0.3;
+  transform: rotate(45deg);
+}
+
+.geometric-shape--3 {
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 35px solid rgba(255, 0, 170, 0.2);
+  top: 30%;
+  left: 5%;
+  animation: geoFloat 7s ease-in-out infinite 2s;
+}
+
+@keyframes geoFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+/* .........................Scroll Indicator.................... */
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.scroll-indicator span {
+  font-size: 0.7rem;
+  color: var(--color-light);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.scroll-mouse {
+  width: 24px;
+  height: 38px;
+  border: 2px solid var(--color-light);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+
+.scroll-wheel {
+  width: 3px;
+  height: 8px;
+  background: var(--color-primary);
+  border-radius: 2px;
+  animation: scrollAnim 2s ease-in-out infinite;
+  box-shadow: 0 0 6px var(--color-primary);
+}
+
+@keyframes scrollAnim {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(12px); }
+}
+
+/* .....................medium device..................... */
+
+@media screen and (max-width: 1024px) {
+  header {
+    height: auto;
+    min-height: 100vh;
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+  }
+
+  .header__container {
+    grid-template-columns: 1fr;
     text-align: center;
-    height: 100%;
-    position:relative;
-    padding-top: 2rem;
-}
+    gap: 3rem;
+  }
 
-/*..............CTA...........*/
-.cta{
-    margin-top: 2.5rem;
-    display: flex;
-    gap: 1.2rem;
-    justify-content: center;
-}
-/*..............socials...........*/
-.header__socials{
-    display: flex;
-    flex-direction: column;
+  .header__content {
     align-items: center;
-    gap: 0.8rem;
-    position: absolute;
-    left: 0;
-    /* bottom: 3rem; */
+    order: 2;
+  }
+
+  .header__badge {
+    margin: 0 auto;
+  }
+
+  .header__description {
+    text-align: center;
+  }
+
+  .cta {
+    justify-content: center;
+  }
+
+  .header__socials {
+    justify-content: center;
+  }
+
+  .header__visual {
+    order: 1;
+    height: auto;
+    padding: 2rem 0;
+  }
+
+  .image-wrapper {
+    width: 250px;
+    height: 250px;
+  }
+
+  .name-line {
+    font-size: 3.5rem;
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
 }
 
-/* .header__socials::after{
-    content: "";
-    width: 1px;
-    height: 2rem;
-    background-color: var(--color-primary);
-} */
+/* .....................small device..................... */
 
-/*..............img...........*/
-.me{
-    background: linear-gradient(var(--color-primary),transparent);
-    width: 22rem;
-    height: 28rem;
-    position: absolute;
-    left:calc(50% - 11rem);
-    margin-top: 4rem;
-    border-radius: 12rem 12rem  0rem 0rem;
-    overflow: hidden;
-    padding: 2rem 1.5rem 1.5rem 1.5rem;
-}
+@media screen and (max-width: 600px) {
+  header {
+    padding-top: 6rem;
+    padding-bottom: 2rem;
+  }
 
+  .name-line {
+    font-size: 2.5rem;
+  }
 
-/*.....................medinum device.....................*/
+  .header__title {
+    font-size: 1rem;
+  }
 
-@media  screen and (max-width: 1024px) {
-    header{
-        height: 68vh;
-    }
-}
+  .image-wrapper {
+    width: 200px;
+    height: 200px;
+  }
 
-/*.....................small device.....................*/
+  .geometric-shape {
+    display: none;
+  }
 
-@media  screen and (max-width: 600px) {
-    header{
-        height: 100vh;
-    }
-    .header__socials{
-        display: none;
-    }
+  .header__socials a {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
 }
